@@ -4,11 +4,15 @@ from __future__ import unicode_literals
 import bottle
 import os.path
 import webtest
-from mako.template import Template
 from mako.lookup import TemplateLookup
 import os
 import os.path
-import cStringIO
+import wsgiref.handlers
+import sys
+import logging
+import re
+
+_logger = logging.getLogger(__name__)
 
 class PyHP:
 
@@ -20,14 +24,20 @@ class PyHP:
         self.templates = TemplateLookup()
         self._template_inited = False
 
+        self.file_exclusion = [r"^.*\.mako$"]
         def base_lister():
             files = []
             for dirpath, dirnames, filenames in os.walk(self.folder):
                 for f in filenames:
                     absp = os.path.join(dirpath, f)
                     path = os.path.relpath(absp, self.folder)
-                    print path
-                    files.append(path)
+                    good = True
+                    for ex in self.file_exclusion:
+                        if re.match(ex, path):
+                            good = False
+                            continue
+                    if good:
+                        files.append(path)
             return files
         self.file_listers = [base_lister]
 
@@ -48,11 +58,11 @@ class PyHP:
         bottle.run(self.app, **kwargs)
 
     def get(self, path):
-        out = b"".join(pyhp.app({
-            'PATH_INFO': "/%s" % path,
-            'REQUEST_METHOD': "GET",
-            'wsgi.errors':cStringIO.StringIO()
-            }, lambda *args: None))
+        handler = wsgiref.handlers.SimpleHandler(sys.stdin, sys.stdout, sys.stderr, {})
+        handler.setup_environ()
+        env = handler.environ
+        env.update({'PATH_INFO': "/%s" % path, 'REQUEST_METHOD': "GET"})
+        out = b"".join(pyhp.app(env, lambda *args: None))
         return out
 
     def gen_static(self, output_folder):
@@ -61,7 +71,7 @@ class PyHP:
         for l in self.file_listers:
             files += l()
         for f in files:
-            print "get", f
+            _logger.info("generating %s" % f)
             content = self.get(f)
             with open(os.path.join(output_folder, f), "w") as file_:
                 file_.write(content)
@@ -74,4 +84,5 @@ def main():
     pyhp.gen_static("output")
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
     main()
