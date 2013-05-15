@@ -40,13 +40,19 @@ _logger = logging.getLogger(__name__)
 class PyGreen:
 
     def __init__(self):
+        # the Bottle application
         self.app = bottle.Bottle()
-        self.folder = "."
+        # a set of strings that identifies the extension of the files
+        # that should be processed using Mako
         self.template_exts = set(["html"])
-
-        self.templates = TemplateLookup()
-        self._template_inited = False
-
+        # the folder were the files to serve are located. Do not set
+        # directly, use set_folder instead
+        self.folder = "."
+        # the TemplateLookup of Mako
+        self.templates = TemplateLookup(directories=[self.folder])
+        # A list of regular expression. Files whose the name match
+        # that regular expression will not be outputed when generating
+        # a static version of the web site
         self.file_exclusion = [r"^.*\.mako$"]
         def base_lister():
             files = []
@@ -62,6 +68,12 @@ class PyGreen:
                     if good:
                         files.append(path)
             return files
+        # A list of function. Each function must return a list of paths
+        # of files to export during the generation of the static web site.
+        # The default one simply returns all the files contained in the folder.
+        # It is necessary to define new listers when new routes are defined
+        # in the Bottle application, or the static site generation routine
+        # will not be able to detect the files to export.
         self.file_listers = [base_lister]
 
         @self.app.route('/', method=['GET', 'POST', 'PUT', 'DELETE'])
@@ -71,17 +83,26 @@ class PyGreen:
                 return self.templates.get_template(path).render(pygreen=pygreen, path=path)
             return bottle.static_file(path, root=self.folder)
 
-    def _check_template_path(self):
-        if not self._template_inited:
-            self.templates.directories.append(self.folder)
-            self._template_inited = True
+    def set_folder(self, folder):
+        """
+        Sets the folder where the files to serve are located.
+        """
+        self.folder = folder
+        self.templates.directories[0] = folder
 
     def run(self, **kwargs):
+        """
+        Launch a development web server.
+        """
         kwargs.setdefault("host", "0.0.0.0")
-        self._check_template_path()
         bottle.run(self.app, **kwargs)
 
     def get(self, path):
+        """
+        Get the content of a file, indentified by its path relative to the folder configured
+        in PyGreen. If the file extension is one of the extensions that should be processed
+        through Mako, it will be processed.
+        """
         handler = wsgiref.handlers.SimpleHandler(sys.stdin, sys.stdout, sys.stderr, {})
         handler.setup_environ()
         env = handler.environ
@@ -90,7 +111,10 @@ class PyGreen:
         return out
 
     def gen_static(self, output_folder):
-        self._check_template_path()
+        """
+        Generates a complete static version of the web site. It will stored in 
+        output_folder.
+        """
         files = []
         for l in self.file_listers:
             files += l()
@@ -109,10 +133,9 @@ def main():
     subparsers = parser.add_subparsers(dest='action')
 
     parser_serve = subparsers.add_parser('serve', help='serve the web site')
-    parser_serve.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
     parser_serve.add_argument('-p', '--port', type=int, default=8080, help='folder containg files to serve')
+    parser_serve.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
     def serve():
-        pygreen.folder = args.folder
         pygreen.run(port=args.port)
     parser_serve.set_defaults(func=serve)
 
@@ -120,11 +143,11 @@ def main():
     parser_gen.add_argument('output', help='folder to store the files')
     parser_gen.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
     def gen():
-        pygreen.folder = args.folder
         pygreen.gen_static(args.output)
     parser_gen.set_defaults(func=gen)
 
     args = parser.parse_args()
+    pygreen.set_folder(args.folder)
     args.func()
 
 if __name__ == "__main__":
