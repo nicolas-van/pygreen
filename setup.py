@@ -19,6 +19,8 @@ setup(name='pygreen',
           ],
       install_requires=[
         "bottle >= 0.11.6",
+        "mako >= 0.8.0",
+        "argparse",
         ],
      )
 

@@ -26,7 +26,6 @@ from __future__ import unicode_literals
 
 import bottle
 import os.path
-import webtest
 from mako.lookup import TemplateLookup
 import os
 import os.path
@@ -78,6 +77,7 @@ class PyGreen:
             self._template_inited = True
 
     def run(self, **kwargs):
+        kwargs.setdefault("host", "0.0.0.0")
         self._check_template_path()
         bottle.run(self.app, **kwargs)
 
