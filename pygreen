@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import pygreen
+from pygreen import pygreen
 
-pygreen.main()
+pygreen.cli()
 

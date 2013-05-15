@@ -34,6 +34,7 @@ import sys
 import logging
 import re
 import argparse
+import sys
 
 _logger = logging.getLogger(__name__)
 
@@ -124,31 +125,34 @@ class PyGreen:
             with open(os.path.join(output_folder, f), "w") as file_:
                 file_.write(content)
 
+    def cli(self, cmd_args=None):
+        """
+        The command line interface of PyGreen.
+        """
+        logging.basicConfig(level=logging.INFO, format='%(message)s')
+
+        parser = argparse.ArgumentParser(description='PyGreen, micro web framework/static web site generator')
+        subparsers = parser.add_subparsers(dest='action')
+
+        parser_serve = subparsers.add_parser('serve', help='serve the web site')
+        parser_serve.add_argument('-p', '--port', type=int, default=8080, help='folder containg files to serve')
+        parser_serve.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
+        def serve():
+            pygreen.run(port=args.port)
+        parser_serve.set_defaults(func=serve)
+
+        parser_gen = subparsers.add_parser('gen', help='generate a static version of the site')
+        parser_gen.add_argument('output', help='folder to store the files')
+        parser_gen.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
+        def gen():
+            pygreen.gen_static(args.output)
+        parser_gen.set_defaults(func=gen)
+
+        args = parser.parse_args(cmd_args)
+        pygreen.set_folder(args.folder)
+        args.func()
+
 pygreen = PyGreen()
 
-def main():
-    logging.basicConfig(level=logging.INFO, format='%(message)s')
-
-    parser = argparse.ArgumentParser(description='PyGreen, micro web framework/static web site generator')
-    subparsers = parser.add_subparsers(dest='action')
-
-    parser_serve = subparsers.add_parser('serve', help='serve the web site')
-    parser_serve.add_argument('-p', '--port', type=int, default=8080, help='folder containg files to serve')
-    parser_serve.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
-    def serve():
-        pygreen.run(port=args.port)
-    parser_serve.set_defaults(func=serve)
-
-    parser_gen = subparsers.add_parser('gen', help='generate a static version of the site')
-    parser_gen.add_argument('output', help='folder to store the files')
-    parser_gen.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
-    def gen():
-        pygreen.gen_static(args.output)
-    parser_gen.set_defaults(func=gen)
-
-    args = parser.parse_args()
-    pygreen.set_folder(args.folder)
-    args.func()
-
 if __name__ == "__main__":
-    main()
+    pygreen.cli()

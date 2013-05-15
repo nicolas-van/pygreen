@@ -46,6 +46,16 @@ This is a common case if you use inheritance or macros. To avoid files to be
 generated when using pygreen serve, name them with the .mako extension. They
 will not be exported.
 
+### I miss feature XYZ, can you add it?
+
+No, but you can, easily. PyGreen can be a command line application or it can
+be a small framework to ease creation of complete Python web applications.
+PyGreen is just [Mako](http://www.makotemplates.org/) templates served using
+the [Bottle](http://bottlepy.org/) web framework. You can easily modify any
+of these using some python code. Example:
+
+
+
 ### What else?
 
 There is nothing else. PyGreen was created to be a static web site generator
@@ -54,9 +64,7 @@ like Jekyll or Hyde is that they have a fixed number of features. Even if
 their creators try to add new features those will not be correctly documented,
 so the users do not know how to use them.
 
-The fact that PyGreen has a small set of features **is a feature**. PyGreem is
-just Mako templates served using the [Bottle](http://bottlepy.org/) 
-micro-framework. Mako templates can contain Python so if you need to do complex
+The fact that PyGreen has a small set of features **is a feature**. . Mako templates can contain Python so if you need to do complex
 stuff just import whatever you need, type the code and get the job done. You
 need to generate new files dynamically or do anything that is initially not
 supported? Import the pygreen module, extend the Bottle object with new routes
