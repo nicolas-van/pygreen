@@ -30,7 +30,7 @@ When going to http://localhost:8080, you will see:
 
     <p>Hello, my age is 28.</p>
 
-PyGreen can also exports all the files of you current folder after having the
+PyGreen can also export all the files of you current folder after having the
 .html files processed by Mako. To do so, type this command:
 
     pygreen gen <output_folder>
