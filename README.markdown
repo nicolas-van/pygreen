@@ -48,7 +48,7 @@ will not be exported.
 
 ### I miss feature XYZ, can you add it?
 
-No, but you can, easily. PyGreen can be a command line application or it can
+No. But you can. Easily. PyGreen can be a command line application or it can
 be a small framework to ease creation of complete Python web applications.
 PyGreen is just [Mako](http://www.makotemplates.org/) templates served using
 the [Bottle](http://bottlepy.org/) web framework. You can easily modify any
