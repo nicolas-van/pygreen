@@ -77,8 +77,8 @@ Python programmer, so just type the code and get the job done.
 PyGreen was primarily created to be a static web site generator more effective
 than existing ones. The problem of existing site generators like Jekyll or
 Hyde is that they have a fixed number of features. Even if their creators try
-to add new features those will not be correctly documented, so the users do
-not know how to use them.
+to add advanced features those will not be correctly documented, so the users
+do not know how to use them.
 
 The fact that PyGreen has a small set of features **is a feature**. You don't
 need to spend hours to read crappy documentation before discovering it's
