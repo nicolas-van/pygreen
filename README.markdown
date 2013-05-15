@@ -67,26 +67,21 @@ simple things simple (like defining 3 html files that inherit from a common
 template without the need to type code) but doesn't restrict you. You need
 anything complex? Mako templates can contain Python code so import whatever
 you need and use the features it provides. If you need anything more complex
-hack through PyGreen and do it. If you read this you should be a Python
-programmer, so just type the code and get the job done.
+hack through PyGreen and do it. Read the PyGreen code, it's 100 lines with
+some documentation, anyone can understand it. If you read this you should be a
+Python programmer, so just type the code and get the job done.
 
 
-### What else?
+### What is it so cool?
 
-There is nothing else. PyGreen was created to be a static web site generator
-more effective than existing ones. The problem of existing site generators
-like Jekyll or Hyde is that they have a fixed number of features. Even if
-their creators try to add new features those will not be correctly documented,
-so the users do not know how to use them.
+PyGreen was primarily created to be a static web site generator more effective
+than existing ones. The problem of existing site generators like Jekyll or
+Hyde is that they have a fixed number of features. Even if their creators try
+to add new features those will not be correctly documented, so the users do
+not know how to use them.
 
-The fact that PyGreen has a small set of features **is a feature**. . Mako
-templates can contain Python so if you need to do complex stuff just import
-whatever you need, type the code and get the job done. You need to generate
-new files dynamically or do anything that is initially not supported? Import
-the pygreen module, extend the Bottle object with new routes and you can do
-anything you want. You don't need documentation for that, PyGreen is 100 lines
-long, anyone can read it and understand it.
-
-If you know how to program, just typing the code to generate the html you want
-is easier than trying to understand a tool dedicated to the task. PyGreen just
-makes it even faster.
+The fact that PyGreen has a small set of features **is a feature**. You don't
+need to spend hours to read crappy documentation before discovering it's
+impossible to do what you want. If you need to do anything which is not trivial
+you know you will have to code it, so just do it. That's what I call being
+pragmatic.
