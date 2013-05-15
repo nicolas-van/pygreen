@@ -37,3 +37,19 @@ PyGreen can also exports all the files of you current folder after having the
 
 This can be useful to post your files on Github Pages or any other free static
 files hosting services.
+
+## FAQ
+
+### How to avoid some mako templates files to be generated?
+
+This is a common case if you use inheritance or macros. To avoid files to be
+generated when using pygreen serve, name them with the .mako extension. They
+will not be exported.
+
+### What if I want to generate a list of html files dynamically?
+
+As an example you want to make a blog with a list of posts. Each post is
+represented by a single html file. You want to aggregate those posts to
+generate multiple pages that each show a certain number of posts.
+
+You could, like in PHP, create a single file ... (TODO)
