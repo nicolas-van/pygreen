@@ -64,4 +64,5 @@ can do anything you want. You don't need documentation for that, PyGreen
 is 100 lines long, anyone can read it and understand it.
 
 If you know how to program, just typing the code to generate the html you want
-is easier than trying to understand a tool dedicated to the task.
+is easier than trying to understand a tool dedicated to the task. PyGreen just
+makes it easier to start even faster.
