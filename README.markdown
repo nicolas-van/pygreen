@@ -55,12 +55,12 @@ their creators try to add new features those will not be correctly documented,
 so the users do not know how to use them.
 
 The fact that PyGreen has a small set of features **is a feature**. PyGreem is
-just Mako templates served using the [Bottle](http://bottlepy.org/) micro-
-framework. Mako templates can contain Python so if you need to do complex
+just Mako templates served using the [Bottle](http://bottlepy.org/) 
+micro-framework. Mako templates can contain Python so if you need to do complex
 stuff just import whatever you need, type the code and get the job done. You
 need to generate new files dynamically or do anything that is not supported?
 Import the pygreen module, extend the Bottle object with new routes and you
-can that do anything you want. You don't need documentation for that, PyGreen
+can do anything you want. You don't need documentation for that, PyGreen
 is 100 lines long, anyone can read it and understand it.
 
 If you know how to program, just typing the code to generate the html you want
