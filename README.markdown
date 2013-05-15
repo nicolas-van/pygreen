@@ -46,10 +46,22 @@ This is a common case if you use inheritance or macros. To avoid files to be
 generated when using pygreen serve, name them with the .mako extension. They
 will not be exported.
 
-### What if I want to generate a list of html files dynamically?
+### What else?
 
-As an example you want to make a blog with a list of posts. Each post is
-represented by a single html file. You want to aggregate those posts to
-generate multiple pages that each show a certain number of posts.
+There is nothing else. PyGreen was created to be a static web site generator
+more effective than existing ones. The problem of existing site generators
+like Jekyll or Hyde is that they have a fixed number of features. Even if
+their creators try to add new features those will not be correctly documented,
+so the users do not know how to use them.
 
-You could, like in PHP, create a single file ... (TODO)
+The fact that PyGreen has very little features **is a feature**. PyGreem is
+just Mako templates served using the [Bottle](http://bottlepy.org/) micro-
+framework. Mako templates can contain Python so if you need to do complex
+stuff just import whatever you need, type the code and get the job done. You
+need to generate new files dynamically or do anything that is not supported?
+Import the pygreen module, extend the Bottle object with new routes and you
+can that do anything you want. You don't need documentation for that, PyGreen
+is 100 lines long, anyone can read it and understand it.
+
+If you know how to program, just typing the code to generate the html you want
+is easier than trying to understand a tool dedicated to the task.
