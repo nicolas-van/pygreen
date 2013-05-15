@@ -24,7 +24,7 @@ The above command will serve the files located in the current folder. All
 files with the .html extension will also be processed by Mako. So if the
 current folder contains a file index.html with the following code:
 
-    <p>Hello, my age is ${30 -2}.</p>
+    <p>Hello, my age is ${30 - 2}.</p>
 
 When going to http://localhost:8080, you will see:
 
