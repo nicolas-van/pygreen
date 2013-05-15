@@ -51,7 +51,7 @@ class PyGreen:
         # the TemplateLookup of Mako
         self.templates = TemplateLookup(directories=[self.folder])
         # A list of regular expression. Files whose the name match
-        # that regular expression will not be outputed when generating
+        # one of those regular expressions will not be outputed when generating
         # a static version of the web site
         self.file_exclusion = [r"^.*\.mako$"]
         def base_lister():
