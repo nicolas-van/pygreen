@@ -54,7 +54,7 @@ like Jekyll or Hyde is that they have a fixed number of features. Even if
 their creators try to add new features those will not be correctly documented,
 so the users do not know how to use them.
 
-The fact that PyGreen has very little features **is a feature**. PyGreem is
+The fact that PyGreen has a small set of features **is a feature**. PyGreem is
 just Mako templates served using the [Bottle](http://bottlepy.org/) micro-
 framework. Mako templates can contain Python so if you need to do complex
 stuff just import whatever you need, type the code and get the job done. You
