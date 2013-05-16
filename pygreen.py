@@ -122,7 +122,11 @@ class PyGreen:
         for f in files:
             _logger.info("generating %s" % f)
             content = self.get(f)
-            with open(os.path.join(output_folder, f), "w") as file_:
+            loc = os.path.join(output_folder, f)
+            d = os.path.dirname(loc)
+            if not os.path.exists(d):
+                os.makedirs(d)
+            with open(loc, "w") as file_:
                 file_.write(content)
 
     def cli(self, cmd_args=None):
