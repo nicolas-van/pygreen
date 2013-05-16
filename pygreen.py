@@ -81,7 +81,7 @@ class PyGreen:
         @self.app.route('/<path:path>', method=['GET', 'POST', 'PUT', 'DELETE'])
         def hello(path="index.html"):
             if path.split(".")[-1] in self.template_exts:
-                return self.templates.get_template(path).render(pygreen=pygreen, path=path)
+                return self.templates.get_template(path).render(pygreen=pygreen)
             return bottle.static_file(path, root=self.folder)
 
     def set_folder(self, folder):
