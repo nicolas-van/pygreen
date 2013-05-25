@@ -10,6 +10,8 @@ result is quite similar to a classic PHP application, but with the good
 features of the Mako templates (like inheritance) and the cool syntax of
 Python.
 
+PyGreen uses the MIT license.
+
 ## Quick Start
 
 To install:
