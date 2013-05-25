@@ -43,7 +43,7 @@ files hosting services.
 ### How to avoid some mako templates files to be generated?
 
 This is a common case if you use inheritance or macros. To avoid files to be
-generated when using pygreen serve, name them with the .mako extension. They
+generated when using pygreen gen, name them with the .mako extension. They
 will not be exported.
 
 ### I miss feature XYZ, can you add it?
