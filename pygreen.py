@@ -46,7 +46,7 @@ class PyGreen:
         # a set of strings that identifies the extension of the files
         # that should be processed using Mako
         self.template_exts = set(["html"])
-        # the folder were the files to serve are located. Do not set
+        # the folder where the files to serve are located. Do not set
         # directly, use set_folder instead
         self.folder = "."
         # the TemplateLookup of Mako
