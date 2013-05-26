@@ -126,7 +126,7 @@ class PyGreen:
             d = os.path.dirname(loc)
             if not os.path.exists(d):
                 os.makedirs(d)
-            with open(loc, "w") as file_:
+            with open(loc, "wb") as file_:
                 file_.write(content)
 
     def cli(self, cmd_args=None):
