@@ -127,7 +127,7 @@ class PyGreen:
             if not os.path.exists(d):
                 os.makedirs(d)
             with open(loc, "w") as file_:
-                file_.write(content)
+                file_.write(content.decode('utf-8'))
 
     def cli(self, cmd_args=None):
         """
