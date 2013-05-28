@@ -51,8 +51,10 @@ class PyGreen:
         # directly, use set_folder instead
         self.folder = "."
         # the TemplateLookup of Mako
-        self.templates = TemplateLookup(directories=[self.folder], \
-            imports=["from markdown import markdown"])
+        self.templates = TemplateLookup(directories=[self.folder],
+            imports=["from markdown import markdown"],
+            input_encoding='iso-8859-1',
+            )
         # A list of regular expression. Files whose the name match
         # one of those regular expressions will not be outputed when generating
         # a static version of the web site
@@ -83,7 +85,9 @@ class PyGreen:
         @self.app.route('/<path:path>', method=['GET', 'POST', 'PUT', 'DELETE'])
         def hello(path="index.html"):
             if path.split(".")[-1] in self.template_exts:
-                return self.templates.get_template(path).render(pygreen=pygreen)
+                t = self.templates.get_template(path)
+                data = t.render_unicode(pygreen=pygreen)
+                return data.encode(t.module._source_encoding)
             return bottle.static_file(path, root=self.folder)
 
     def set_folder(self, folder):
