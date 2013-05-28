@@ -4,11 +4,11 @@ from setuptools import setup
 import os.path
 
 setup(name='pygreen',
-      version='1.0.0',
+      version='1.0.1',
       description='PyGreen',
       author='Nicolas Vanhoren',
       author_email='nicolas.vanhoren@unknown.com',
-      url='https://github.com/nicolas-van/pygreen',
+      url='http://pygreen.neoname.eu',
       py_modules = ['pygreen'],
       packages=[],
       scripts=["pygreen"],
