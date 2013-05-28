@@ -54,7 +54,7 @@ class PyGreen:
         # A list of regular expression. Files whose the name match
         # one of those regular expressions will not be outputed when generating
         # a static version of the web site
-        self.file_exclusion = [r"^.*\.mako$"]
+        self.file_exclusion = [r".*\.mako", r"(^|.*\/)\..*"]
         def base_lister():
             files = []
             for dirpath, dirnames, filenames in os.walk(self.folder):
