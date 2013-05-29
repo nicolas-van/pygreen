@@ -150,19 +150,19 @@ class PyGreen:
         parser_serve.add_argument('-d', '--disable-templates', action='store_true', default=False, help='just serve static files, do not use invoke Mako')
         def serve():
             if args.disable_templates:
-                pygreen.template_exts = set([])
-            pygreen.run(port=args.port)
+                self.template_exts = set([])
+            self.run(port=args.port)
         parser_serve.set_defaults(func=serve)
 
         parser_gen = subparsers.add_parser('gen', help='generate a static version of the site')
         parser_gen.add_argument('output', help='folder to store the files')
         parser_gen.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
         def gen():
-            pygreen.gen_static(args.output)
+            self.gen_static(args.output)
         parser_gen.set_defaults(func=gen)
 
         args = parser.parse_args(cmd_args)
-        pygreen.set_folder(args.folder)
+        self.set_folder(args.folder)
         args.func()
 
 pygreen = PyGreen()
