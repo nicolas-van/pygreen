@@ -147,7 +147,10 @@ class PyGreen:
         parser_serve = subparsers.add_parser('serve', help='serve the web site')
         parser_serve.add_argument('-p', '--port', type=int, default=8080, help='folder containg files to serve')
         parser_serve.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
+        parser_serve.add_argument('-d', '--disable-templates', action='store_true', default=False, help='just serve static files, do not use invoke Mako')
         def serve():
+            if args.disable_templates:
+                pygreen.template_exts = set([])
             pygreen.run(port=args.port)
         parser_serve.set_defaults(func=serve)
 
