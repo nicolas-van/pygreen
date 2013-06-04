@@ -22,6 +22,7 @@ setup(name='pygreen',
         "mako >= 0.8.0",
         "argparse",
         "markdown",
+        "waitress",
         ],
      )
 

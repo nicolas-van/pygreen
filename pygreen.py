@@ -102,7 +102,7 @@ class PyGreen:
         Launch a development web server.
         """
         kwargs.setdefault("host", "0.0.0.0")
-        bottle.run(self.app, **kwargs)
+        bottle.run(self.app, server="waitress", **kwargs)
 
     def get(self, path):
         """
