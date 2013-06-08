@@ -54,6 +54,7 @@ class PyGreen:
         self.templates = TemplateLookup(directories=[self.folder],
             imports=["from markdown import markdown"],
             input_encoding='iso-8859-1',
+            collection_size=100,
             )
         # A list of regular expression. Files whose the name match
         # one of those regular expressions will not be outputed when generating
