@@ -60,18 +60,19 @@ class PyGreen:
         # one of those regular expressions will not be outputed when generating
         # a static version of the web site
         self.file_exclusion = [r".*\.mako", r"(^|.*\/)\..*"]
+        def is_public(path):
+            for ex in self.file_exclusion:
+                if re.match(ex,path):
+                    return False
+            return True
+            
         def base_lister():
             files = []
             for dirpath, dirnames, filenames in os.walk(self.folder):
                 for f in filenames:
                     absp = os.path.join(dirpath, f)
                     path = os.path.relpath(absp, self.folder)
-                    good = True
-                    for ex in self.file_exclusion:
-                        if re.match(ex, path):
-                            good = False
-                            continue
-                    if good:
+                    if is_public(path):
                         files.append(path)
             return files
         # A list of function. Each function must return a list of paths
@@ -86,10 +87,13 @@ class PyGreen:
         @self.app.route('/<path:path>', method=['GET', 'POST', 'PUT', 'DELETE'])
         def hello(path="index.html"):
             if path.split(".")[-1] in self.template_exts:
-                t = self.templates.get_template(path)
-                data = t.render_unicode(pygreen=pygreen)
-                return data.encode(t.module._source_encoding)
-            return bottle.static_file(path, root=self.folder)
+                if self.templates.has_template(path):
+                    t = self.templates.get_template(path)
+                    data = t.render_unicode(pygreen=pygreen,request=bottle.request)
+                    return data.encode(t.module._source_encoding)
+            elif is_public(path):
+                return bottle.static_file(path, root=self.folder)
+            return bottle.HTTPError(404,'File does not exist.')
 
     def set_folder(self, folder):
         """
