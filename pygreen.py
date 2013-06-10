@@ -89,7 +89,7 @@ class PyGreen:
             if path.split(".")[-1] in self.template_exts:
                 if self.templates.has_template(path):
                     t = self.templates.get_template(path)
-                    data = t.render_unicode(pygreen=pygreen)
+                    data = t.render_unicode(pygreen=pygreen,request=bottle.request)
                     return data.encode(t.module._source_encoding)
             elif is_public(path):
                 return bottle.static_file(path, root=self.folder)
