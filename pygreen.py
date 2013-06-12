@@ -82,14 +82,17 @@ class PyGreen:
         # will not be able to detect the files to export.
         self.file_listers = [base_lister]
 
-        @self.app.route('/', method=['GET', 'POST', 'PUT', 'DELETE'])
-        @self.app.route('/<path:path>', method=['GET', 'POST', 'PUT', 'DELETE'])
-        def hello(path="index.html"):
+        def file_renderer(path):
             if path.split(".")[-1] in self.template_exts:
                 t = self.templates.get_template(path)
                 data = t.render_unicode(pygreen=pygreen)
                 return data.encode(t.module._source_encoding)
             return bottle.static_file(path, root=self.folder)
+        # The default function used to render files. Could be modified to change the way files are
+        # generated, like using another template language or transforming css...
+        self.file_renderer = file_renderer
+        self.app.route('/', method=['GET', 'POST', 'PUT', 'DELETE'])(lambda: self.file_renderer('index.html'))
+        self.app.route('/<path:path>', method=['GET', 'POST', 'PUT', 'DELETE'])(lambda path: self.file_renderer(path))
 
     def set_folder(self, folder):
         """
