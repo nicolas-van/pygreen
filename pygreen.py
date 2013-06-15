@@ -87,7 +87,7 @@ class PyGreen:
             if is_public(path):
                 if path.split(".")[-1] in self.template_exts and self.templates.has_template(path):
                     t = self.templates.get_template(path)
-                    data = t.render_unicode(pygreen=pygreen)
+                    data = t.render_unicode(pygreen=self)
                     return data.encode(t.module._source_encoding)
                 return bottle.static_file(path, root=self.folder)
             return bottle.HTTPError(404, 'File does not exist.')
@@ -121,7 +121,7 @@ class PyGreen:
         handler.setup_environ()
         env = handler.environ
         env.update({'PATH_INFO': "/%s" % path, 'REQUEST_METHOD': "GET"})
-        out = b"".join(pygreen.app(env, lambda *args: None))
+        out = b"".join(self.app(env, lambda *args: None))
         return out
 
     def gen_static(self, output_folder):
