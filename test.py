@@ -1,5 +1,5 @@
 
-from __future__ import unicode_literals
+from __future__ import unicode_literals, print_function
 
 import unittest
 import pygreen
@@ -23,27 +23,27 @@ class TestSequenceFunctions(unittest.TestCase):
     def test_static_get(self):
         self.pygreen.set_folder(os.path.join(_folder, "input_static_get"))
         value = self.pygreen.get("test.txt")
-        self.assertEqual(value.strip(), "test")
+        self.assertEqual(value.strip(), b"test")
 
     def test_mako(self):
         self.pygreen.set_folder(os.path.join(_folder, "input_mako"))
         value = self.pygreen.get("test.html")
-        self.assertEqual(value.strip(), "3+2=5")
+        self.assertEqual(value.strip(), b"3+2=5")
 
     def test_gen(self):
         self.pygreen.set_folder(os.path.join(_folder, "input_gen"))
         value = self.pygreen.gen_static(_output)
-        with open(os.path.join(_output, "test.txt")) as _file:
+        with open(os.path.join(_output, "test.txt"), "rb") as _file:
             value = _file.read()
-        self.assertEqual(value.strip(), "test")
-        with open(os.path.join(_output, "test.html")) as _file:
+        self.assertEqual(value.strip(), b"test")
+        with open(os.path.join(_output, "test.html"), "rb") as _file:
             value = _file.read()
-        self.assertEqual(value.strip(), "3+2=5")
+        self.assertEqual(value.strip(), b"3+2=5")
 
     def test_markdown(self):
         self.pygreen.set_folder(os.path.join(_folder, "input_markdown"))
         value = self.pygreen.get("test.html")
-        self.assertEqual(value.strip(), "<h1>Test</h1>")
+        self.assertEqual(value.strip(), b"<h1>Test</h1>")
 
 if __name__ == '__main__':
     unittest.main()

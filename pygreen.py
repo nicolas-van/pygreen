@@ -22,7 +22,7 @@
 # AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from __future__ import unicode_literals
+from __future__ import unicode_literals, print_function
 
 import bottle
 import os.path
@@ -173,8 +173,8 @@ class PyGreen:
 
         args = parser.parse_args(cmd_args)
         self.set_folder(args.folder)
-        print parser.description
-        print ""
+        print(parser.description)
+        print("")
         args.func()
 
 pygreen = PyGreen()

@@ -4,7 +4,7 @@ from setuptools import setup
 import os.path
 
 setup(name='pygreen',
-      version='1.0.2',
+      version='1.0.3',
       description='PyGreen',
       author='Nicolas Vanhoren',
       author_email='nicolas.vanhoren@unknown.com',
