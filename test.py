@@ -30,5 +30,20 @@ class TestSequenceFunctions(unittest.TestCase):
         value = self.pygreen.get("test.html")
         self.assertEqual(value.strip(), "3+2=5")
 
+    def test_gen(self):
+        self.pygreen.set_folder(os.path.join(_folder, "input_gen"))
+        value = self.pygreen.gen_static(_output)
+        with open(os.path.join(_output, "test.txt")) as _file:
+            value = _file.read()
+        self.assertEqual(value.strip(), "test")
+        with open(os.path.join(_output, "test.html")) as _file:
+            value = _file.read()
+        self.assertEqual(value.strip(), "3+2=5")
+
+    def test_markdown(self):
+        self.pygreen.set_folder(os.path.join(_folder, "input_markdown"))
+        value = self.pygreen.get("test.html")
+        self.assertEqual(value.strip(), "<h1>Test</h1>")
+
 if __name__ == '__main__':
     unittest.main()
