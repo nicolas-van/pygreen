@@ -36,6 +36,7 @@ import re
 import argparse
 import sys
 import markdown
+import waitress
 
 _logger = logging.getLogger(__name__)
 
@@ -104,12 +105,11 @@ class PyGreen:
         self.folder = folder
         self.templates.directories[0] = folder
 
-    def run(self, **kwargs):
+    def run(self, host='0.0.0.0', port=8080):
         """
         Launch a development web server.
         """
-        kwargs.setdefault("host", "0.0.0.0")
-        bottle.run(self.app, server="waitress", **kwargs)
+        waitress.serve(self, host=host, port=port)
 
     def get(self, path):
         """
@@ -142,6 +142,9 @@ class PyGreen:
             with open(loc, "wb") as file_:
                 file_.write(content)
 
+    def __call__(self, environ, start_response):
+        return self.app(environ, start_response)
+
     def cli(self, cmd_args=None):
         """
         The command line interface of PyGreen.
@@ -170,6 +173,8 @@ class PyGreen:
 
         args = parser.parse_args(cmd_args)
         self.set_folder(args.folder)
+        print parser.description
+        print ""
         args.func()
 
 pygreen = PyGreen()
