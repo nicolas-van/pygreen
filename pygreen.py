@@ -117,13 +117,6 @@ class PyGreen:
         in PyGreen. If the file extension is one of the extensions that should be processed
         through Mako, it will be processed.
         """
-        """
-        handler = wsgiref.handlers.SimpleHandler(sys.stdin, sys.stdout, sys.stderr, {})
-        handler.setup_environ()
-        env = handler.environ
-        env.update({'PATH_INFO': "/%s" % path, 'REQUEST_METHOD': "GET"})
-        out = b"".join(self.app(env, lambda *args: None))
-        return out"""
         data = self.app.test_client().get("/%s" % path).data
         return data
 
