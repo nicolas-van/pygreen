@@ -24,7 +24,7 @@
 
 from __future__ import unicode_literals, print_function
 
-import bottle
+import flask
 import os.path
 from mako.lookup import TemplateLookup
 import os
@@ -44,7 +44,7 @@ class PyGreen:
 
     def __init__(self):
         # the Bottle application
-        self.app = bottle.Bottle()
+        self.app = flask.Flask(__name__)
         # a set of strings that identifies the extension of the files
         # that should be processed using Mako
         self.template_exts = set(["html"])
@@ -76,7 +76,7 @@ class PyGreen:
                     if is_public(path):
                         files.append(path)
             return files
-        # A list of function. Each function must return a list of paths
+        # A list of functions. Each function must return a list of paths
         # of files to export during the generation of the static web site.
         # The default one simply returns all the files contained in the folder.
         # It is necessary to define new listers when new routes are defined
@@ -90,13 +90,13 @@ class PyGreen:
                     t = self.templates.get_template(path)
                     data = t.render_unicode(pygreen=self)
                     return data.encode(t.module._source_encoding)
-                return bottle.static_file(path, root=self.folder)
-            return bottle.HTTPError(404, 'File does not exist.')
+                return flask.send_from_directory(self.folder, path)
+            flask.abort(404)
         # The default function used to render files. Could be modified to change the way files are
         # generated, like using another template language or transforming css...
         self.file_renderer = file_renderer
-        self.app.route('/', method=['GET', 'POST', 'PUT', 'DELETE'])(lambda: self.file_renderer('index.html'))
-        self.app.route('/<path:path>', method=['GET', 'POST', 'PUT', 'DELETE'])(lambda path: self.file_renderer(path))
+        self.app.add_url_rule('/', "root", lambda: self.file_renderer('index.html'), methods=['GET', 'POST', 'PUT', 'DELETE'])
+        self.app.add_url_rule('/<path:path>', "all_files", lambda path: self.file_renderer(path), methods=['GET', 'POST', 'PUT', 'DELETE'])
 
     def set_folder(self, folder):
         """
@@ -117,12 +117,15 @@ class PyGreen:
         in PyGreen. If the file extension is one of the extensions that should be processed
         through Mako, it will be processed.
         """
+        """
         handler = wsgiref.handlers.SimpleHandler(sys.stdin, sys.stdout, sys.stderr, {})
         handler.setup_environ()
         env = handler.environ
         env.update({'PATH_INFO': "/%s" % path, 'REQUEST_METHOD': "GET"})
         out = b"".join(self.app(env, lambda *args: None))
-        return out
+        return out"""
+        data = self.app.test_client().get("/%s" % path).data
+        return data
 
     def gen_static(self, output_folder):
         """

@@ -4,7 +4,7 @@ from setuptools import setup
 import os.path
 
 setup(name='pygreen',
-      version='1.0.3',
+      version='2.0.0-beta.1',
       description='PyGreen',
       author='Nicolas Vanhoren',
       author_email='nicolas.vanhoren@unknown.com',
@@ -18,7 +18,7 @@ setup(name='pygreen',
       classifiers=[
           ],
       install_requires=[
-        "bottle >= 0.11.6",
+        "flask >= 0.10.1",
         "mako >= 0.8.0",
         "argparse",
         "markdown",
