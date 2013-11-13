@@ -51,6 +51,7 @@ class PyGreen:
         # the folder where the files to serve are located. Do not set
         # directly, use set_folder instead
         self.folder = "."
+        self.app.root_path = "."
         # the TemplateLookup of Mako
         self.templates = TemplateLookup(directories=[self.folder],
             imports=["from markdown import markdown"],
@@ -90,7 +91,7 @@ class PyGreen:
                     t = self.templates.get_template(path)
                     data = t.render_unicode(pygreen=self)
                     return data.encode(t.module._source_encoding)
-                return flask.send_from_directory(self.folder, path)
+                return flask.send_file(path)
             flask.abort(404)
         # The default function used to render files. Could be modified to change the way files are
         # generated, like using another template language or transforming css...
@@ -104,6 +105,7 @@ class PyGreen:
         """
         self.folder = folder
         self.templates.directories[0] = folder
+        self.app.root_path = folder
 
     def run(self, host='0.0.0.0', port=8080):
         """
