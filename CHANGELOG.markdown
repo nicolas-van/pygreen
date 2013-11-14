@@ -3,3 +3,9 @@
 
 * Switched from bottle to Flask as a web framework. This is due to a lot of flaws in bottle that were discovered over
   time and were a real burden to develop more advanced stuff with Pygreen.
+
+#### 1.0.3
+
+* Added *.py to excluded files
+* Some minor API changes
+* Bug fixes
