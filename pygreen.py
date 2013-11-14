@@ -44,7 +44,7 @@ class PyGreen:
 
     def __init__(self):
         # the Bottle application
-        self.app = flask.Flask(__name__)
+        self.app = flask.Flask(__name__, static_folder=None, template_folder=None)
         # a set of strings that identifies the extension of the files
         # that should be processed using Mako
         self.template_exts = set(["html"])
