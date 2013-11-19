@@ -112,7 +112,7 @@ class PyGreen:
         """
         Launch a development web server.
         """
-        waitress.serve(self, host=host, port=port)
+        self.app.run(host=host, port=port, debug=True, use_reloader=False, use_evalex=False)
 
     def get(self, path):
         """

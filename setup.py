@@ -4,7 +4,7 @@ from setuptools import setup
 import os.path
 
 setup(name='pygreen',
-      version='2.0.0-beta.1',
+      version='2.0.0-beta.2',
       description='PyGreen',
       author='Nicolas Vanhoren',
       author_email='nicolas.vanhoren@unknown.com',
@@ -22,7 +22,6 @@ setup(name='pygreen',
         "mako >= 0.8.0",
         "argparse",
         "markdown",
-        "waitress",
         ],
      )
 
