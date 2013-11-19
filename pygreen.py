@@ -91,7 +91,8 @@ class PyGreen:
                     t = self.templates.get_template(path)
                     data = t.render_unicode(pygreen=self)
                     return data.encode(t.module._source_encoding)
-                return flask.send_file(path)
+                if os.path.exists(os.path.join(self.folder, path)):
+                    return flask.send_file(path)
             flask.abort(404)
         # The default function used to render files. Could be modified to change the way files are
         # generated, like using another template language or transforming css...
