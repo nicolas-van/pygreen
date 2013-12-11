@@ -36,7 +36,6 @@ import re
 import argparse
 import sys
 import markdown
-import waitress
 
 _logger = logging.getLogger(__name__)
 
