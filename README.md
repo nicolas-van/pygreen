@@ -1,6 +1,8 @@
 
 # PyGreen
 
+[![Build Status](https://travis-ci.org/nicolas-van/pygreen.svg?branch=master)](https://travis-ci.org/nicolas-van/pygreen)
+
 [See the web site for any information.](http://nicolas-van.github.io/pygreen/)
 
 ## License
