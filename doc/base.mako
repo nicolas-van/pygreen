@@ -9,7 +9,7 @@
   <meta name="description" content="${self.attr.description}">
   <meta name="author" content="Nicolas Vanhoren">
 
-  <link rel="stylesheet" type="text/css" href="./bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="./bootstrap.css" />
 
 </head>
 <body>
@@ -18,8 +18,8 @@
     src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-12">
         ${self.body()}
       </div>
     </div>
