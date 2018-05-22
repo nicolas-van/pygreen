@@ -25,7 +25,7 @@ processed by Mako. So if the current folder contains a file index.html with the 
 
     <p>Hello, my age is ${30 - 2}.</p>
 
-When going to http://localhost:8080, you will see:
+When going to `http://localhost:8080`, you will see:
 
     <p>Hello, my age is 28.</p>
 
@@ -90,16 +90,6 @@ add advanced features those will not be correctly documented, so the users do no
 The fact that PyGreen has a small set of features **is a feature**. You don't need to spend hours to read crappy
 documentation before discovering it's impossible to do what you want. If you need to do anything which is not trivial
 you know you will have to code it, so just do it. That's what I call being pragmatic.
-
-### Does PyGreen need contributions?
-
-Yes! Report issues, write examples in the wiki, propose improvements,
-[everything is on Github](https://github.com/nicolas-van/pygreen). Just keep in mind that PyGreen is designed to be
-minimalist, so big features will probably not be accepted.
-
-You can also write articles or blog posts about PyGreen.
-
-For any question, [contact me](https://github.com/nicolas-van).
 
 ## License
 
