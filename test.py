@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from __future__ import unicode_literals, print_function
+from __future__ import division, absolute_import, print_function, unicode_literals
 
 import unittest
 import pygreen
