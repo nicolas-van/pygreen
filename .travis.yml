@@ -1,31 +1,31 @@
 language: python
 python:
-  - "2.7"
-  - "3.3"
-  - "3.6"
+- '2.7'
+- '3.3'
+- '3.6'
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-  - python test.py
+- python test.py
 jobs:
   include:
-    - stage: deploy
-      python: "3.6"
-      script:
-        - pip install pygreen
-        - pygreen gen -f doc docbuild
-      deploy:
-        - provider: pages
-          skip-cleanup: true
-          github-token: $GITHUB_TOKEN
-          local-dir: docbuild
-          target-branch: gh-pages
-          on:
-            branch: master
-        - provider: pypi
-          user: nicolasvan
-          password:
-            secure: XyHzM/Fy15pEC0zNRzciaGkMlyof++SbjidgP5Z1iJiZ7Ww9pA2b986wx1ZeuAcRaxkhi9ut+FiGbQesLlN50TxGr3t7lCf4KRoUKzTVNomMpznKBmBBYPZP+e4jI917tJoXca1gGcQgOQU+kHxvLACvULZ1ywusFy1P6DaMIvq76gVBCv1hd42mxL4vBt6GUe78TfFyyVClceW/75/pcdcBlMtp/C8Lz0VKheWRP18vMFGm1EAqkJYWmS6OiGaReagKDzfmZ3v1S3h9gOLdhFIP7gbjM8eCdQG+mzHXhQRp+xFiyE9fg2JErWfMk/Z2Xm8JK2HXJbUmdoJiGYgKdufIw5aOgtRluTQBfu0HZJgJBFLyk0o1iYZ/V9W2zRZz7NiORXEirgSmafLZqdfcZAwjKbQh2oQHU38ITn1jZbip3aCBlwIhBGliEV2aFadKkZn0iAd1WasX2qWAOf3NSjPaBsmR//Uo/2quHhUEvPt0NUNXCVrXHdfnQfouGlKYFLhz2FaurGCbFl93ppkUMpqvmfwytuKqh8uf0dQcYFPTdZcLvHLaeYQBYAZ++/OlNXzRZxYaEr//qEcWhagjDyfRYNE0RllEoNMkmUgZVBlXmoivKUerH8RxFxCSlZSEd7Ru0cXeIDda7pXR7pVCWYq6l2S0/4wAVojibgQ2rLA=
-          on:
-            tags: true
-            branch: master
+  - stage: deploy
+    python: '3.6'
+    script:
+    - pip install pygreen
+    - pygreen gen -f doc docbuild
+    deploy:
+    - provider: pages
+      skip-cleanup: true
+      github-token: "$GITHUB_TOKEN"
+      local-dir: docbuild
+      target-branch: gh-pages
+      on:
+        branch: master
+    - provider: pypi
+      user: nicolasvan
+      password:
+        secure: ET7159/tdSCzpOO6l/enxNOnN3UfM9MC/nIBA8/m3KZp51mLbdKx8hDRHH3jCxpL4J6Cv5kobEw87ehzRCNjMMhparYDKSiTPe9G4pshVY6g0hKrTQXhh7MDIAiPudyrPQFFJPbj7XdW9Ld4ucaezrXgp+43ahhtS+S5tdY2Vwz+/th3B3F+3YpIJhID5gjErdcjB/sn57pABy8c0sD8jUbGagY6/u+CVzUx69XyK67wfpObCT0V51KJ08yB/8Zkn2CO0olfvPNjcTSMbEM+RXdVnUbOA6tqG3nOeQghInvAPjYlye2vDfm+tpJWlsrMHZtCM32tf9Y1gadUOAT5my0bZpqIzYBYn6ELTzWhGdzyvn9MzuEx8b5Aq7FwBPxBz3JtqQVvI2CNXfQcGJsVWkytb7z1rNjjG0zITuIgaSFUM8R6GWQXAi8LPgGvn7ShwPpau4ehUjGRlraFdBhuw9jteyJPUwpfQriHXcJB1c9TlcSMmm7zsZCLFFOGPlHcNN1/UziJ+1iWQI0pWxVhGm9g1vBhUV8n+djsfFxFDdafBxDZ/aZtjLDHNcOLNXdqjSADm/RV3W2im8JX/BpQb9l4ou2rWEYYNK50Ik3S5jzVp++26XtI7GkDzRdZQLF5OycVBoLAJEx5+MK/khqXQyFAZcZDhgBRC+3INcybr2Y=
+      on:
+        tags: true
+        branch: master
