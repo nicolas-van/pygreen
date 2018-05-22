@@ -1,6 +1,1 @@
-dist
-*.pyc
-MANIFEST
-build
-*.egg-info
 venv
