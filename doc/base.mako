@@ -5,8 +5,8 @@
 <head>
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <title>${title}</title>
-  <meta name="description" content="${description}">
+  <title>${self.attr.title}</title>
+  <meta name="description" content="${self.attr.description}">
   <meta name="author" content="Nicolas Vanhoren">
 
   <link rel="stylesheet" type="text/css" href="./bootstrap.min.css" />
@@ -14,11 +14,13 @@
 </head>
 <body>
 
+  <a href="https://github.com/nicolas-van/pygreen"><img style="position: absolute; top: 0; right: 0; border: 0;"
+    src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
   <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-push-2">
-        <%block name="content">
-        </%block>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        ${self.body()}
       </div>
     </div>
   </div>

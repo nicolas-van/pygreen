@@ -3,22 +3,11 @@
     description = "Pygreen - Static Web Site Generator for Python Programmers"
 %>
 
-<%inherit file="./base.mako"/>
-
-<%block name="content">
+<%inherit file="base.mako"/>
 
 <%text filter="markdown">
 # PyGreen
-</%text>
 
-<div class="horizontalSocialNetwork">
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://pygreen.neoname.eu/" data-via="nicolasvanhoren" data-lang="fr">Tweeter</a>
-    <a href="https://twitter.com/nicolasvanhoren" class="twitter-follow-button" data-show-count="false" data-lang="fr" data-show-screen-name="false">Suivre @nicolasvanhoren</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <iframe src="http://ghbtns.com/github-btn.html?user=nicolas-van&amp;repo=pygreen&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-</div>
-
-<%text filter="markdown">
 A micro web framework/static web site generator.
 
 PyGreen is a simple tool to generate small web sites. The concept is to put all files to serve in a folder and invoke
@@ -119,11 +108,3 @@ You can also write articles or blog posts about PyGreen.
 For any question, [contact me](https://github.com/nicolas-van).
 
 </%text>
-
-<div class="horizontalMenu">
-    <a href="https://github.com/nicolas-van/pygreen/issues?state=open">Bug tracker</a>
-    <a href="https://github.com/nicolas-van/pygreen">Pygreen @ Github</a>
-    ${basemacros.links()}
-</div>
-
-</%block>
