@@ -14,8 +14,8 @@ PHP application, but with the good features of the Mako templates (like inherita
 
 ## License
 
-[See the license file](./LICENSE.md).
+[See the license file](https://github.com/nicolas-van/pygreen/blob/master/LICENSE.md).
 
 ## Contribution
 
-[See the contribution guide](./CONTRIBUTING.md).
+[See the contribution guide](https://github.com/nicolas-van/pygreen/blob/master/CONTRIBUTING.md).
