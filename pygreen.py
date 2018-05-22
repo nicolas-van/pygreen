@@ -131,9 +131,9 @@ class PyGreen:
         subparsers = parser.add_subparsers(dest='action')
 
         parser_serve = subparsers.add_parser('serve', help='serve the web site')
-        parser_serve.add_argument('-p', '--port', type=int, default=8080, help='folder containg files to serve')
+        parser_serve.add_argument('-p', '--port', type=int, default=8080, help='port to serve on')
         parser_serve.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
-        parser_serve.add_argument('-d', '--disable-templates', action='store_true', default=False, help='just serve static files, do not use invoke Mako')
+        parser_serve.add_argument('-d', '--disable-templates', action='store_true', default=False, help='just serve static files, do not use Mako')
         def serve():
             if args.disable_templates:
                 self.template_exts = set([])
@@ -142,7 +142,7 @@ class PyGreen:
 
         parser_gen = subparsers.add_parser('gen', help='generate a static version of the site')
         parser_gen.add_argument('output', help='folder to store the files')
-        parser_gen.add_argument('-f', '--folder', default=".", help='folder containg files to serve')
+        parser_gen.add_argument('-f', '--folder', default=".", help='folder containing files to generate')
         def gen():
             self.gen_static(args.output)
         parser_gen.set_defaults(func=gen)
