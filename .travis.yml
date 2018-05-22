@@ -12,12 +12,20 @@ jobs:
     - stage: deploy
       python: "3.6"
       script:
-        - "echo deploying to Pypi"
+        - pip install pygreen
+        - pygreen gen -f doc docbuild
       deploy:
-        provider: pypi
-        user: nicolasvan
-        password:
-          secure: XyHzM/Fy15pEC0zNRzciaGkMlyof++SbjidgP5Z1iJiZ7Ww9pA2b986wx1ZeuAcRaxkhi9ut+FiGbQesLlN50TxGr3t7lCf4KRoUKzTVNomMpznKBmBBYPZP+e4jI917tJoXca1gGcQgOQU+kHxvLACvULZ1ywusFy1P6DaMIvq76gVBCv1hd42mxL4vBt6GUe78TfFyyVClceW/75/pcdcBlMtp/C8Lz0VKheWRP18vMFGm1EAqkJYWmS6OiGaReagKDzfmZ3v1S3h9gOLdhFIP7gbjM8eCdQG+mzHXhQRp+xFiyE9fg2JErWfMk/Z2Xm8JK2HXJbUmdoJiGYgKdufIw5aOgtRluTQBfu0HZJgJBFLyk0o1iYZ/V9W2zRZz7NiORXEirgSmafLZqdfcZAwjKbQh2oQHU38ITn1jZbip3aCBlwIhBGliEV2aFadKkZn0iAd1WasX2qWAOf3NSjPaBsmR//Uo/2quHhUEvPt0NUNXCVrXHdfnQfouGlKYFLhz2FaurGCbFl93ppkUMpqvmfwytuKqh8uf0dQcYFPTdZcLvHLaeYQBYAZ++/OlNXzRZxYaEr//qEcWhagjDyfRYNE0RllEoNMkmUgZVBlXmoivKUerH8RxFxCSlZSEd7Ru0cXeIDda7pXR7pVCWYq6l2S0/4wAVojibgQ2rLA=
-        on:
-          tags: true
-          branch: master
+        - provider: pages
+          skip-cleanup: true
+          github-token: $GITHUB_TOKEN
+          local-dir: docbuild
+          target-branch: gh-pages
+          on:
+            branch: master
+        - provider: pypi
+          user: nicolasvan
+          password:
+            secure: XyHzM/Fy15pEC0zNRzciaGkMlyof++SbjidgP5Z1iJiZ7Ww9pA2b986wx1ZeuAcRaxkhi9ut+FiGbQesLlN50TxGr3t7lCf4KRoUKzTVNomMpznKBmBBYPZP+e4jI917tJoXca1gGcQgOQU+kHxvLACvULZ1ywusFy1P6DaMIvq76gVBCv1hd42mxL4vBt6GUe78TfFyyVClceW/75/pcdcBlMtp/C8Lz0VKheWRP18vMFGm1EAqkJYWmS6OiGaReagKDzfmZ3v1S3h9gOLdhFIP7gbjM8eCdQG+mzHXhQRp+xFiyE9fg2JErWfMk/Z2Xm8JK2HXJbUmdoJiGYgKdufIw5aOgtRluTQBfu0HZJgJBFLyk0o1iYZ/V9W2zRZz7NiORXEirgSmafLZqdfcZAwjKbQh2oQHU38ITn1jZbip3aCBlwIhBGliEV2aFadKkZn0iAd1WasX2qWAOf3NSjPaBsmR//Uo/2quHhUEvPt0NUNXCVrXHdfnQfouGlKYFLhz2FaurGCbFl93ppkUMpqvmfwytuKqh8uf0dQcYFPTdZcLvHLaeYQBYAZ++/OlNXzRZxYaEr//qEcWhagjDyfRYNE0RllEoNMkmUgZVBlXmoivKUerH8RxFxCSlZSEd7Ru0cXeIDda7pXR7pVCWYq6l2S0/4wAVojibgQ2rLA=
+          on:
+            tags: true
+            branch: master
