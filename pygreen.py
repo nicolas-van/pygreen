@@ -155,5 +155,8 @@ class PyGreen:
 
 pygreen = PyGreen()
 
-if __name__ == "__main__":
+def main():
     pygreen.cli()
+
+if __name__ == "__main__":
+    main()
