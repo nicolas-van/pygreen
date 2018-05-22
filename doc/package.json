@@ -1,0 +1,16 @@
+{
+  "name": "doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "node-sass": "^4.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "node-sass index.scss index.css"
+  },
+  "author": "",
+  "license": "ISC"
+}

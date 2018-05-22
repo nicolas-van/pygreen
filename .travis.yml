@@ -13,6 +13,7 @@ jobs:
     python: '3.6'
     script:
     - pip install pygreen
+    - cd doc && npm install && npm run build && rm -r node_modules && cd ..
     - pygreen gen -f doc docbuild
     deploy:
     - provider: pages

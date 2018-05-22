@@ -9,7 +9,7 @@
   <meta name="description" content="${self.attr.description}">
   <meta name="author" content="Nicolas Vanhoren">
 
-  <link rel="stylesheet" type="text/css" href="./bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="./index.css" />
 
 </head>
 <body>
