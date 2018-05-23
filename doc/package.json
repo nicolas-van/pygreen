@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bootstrap": "^4.1.1",
-    "node-sass": "^4.9.0"
+    "bootstrap": "^4.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sass": "^1.3.2"
+  },
   "scripts": {
-    "build": "node-sass index.scss index.css"
+    "build": "sass index.scss index.css"
   },
   "author": "",
   "license": "ISC"
