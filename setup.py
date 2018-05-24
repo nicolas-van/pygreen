@@ -139,7 +139,8 @@ setup(
     install_requires=[
         'flask ~= 1.0.2',
         'mako ~= 1.0.7',
-        'markdown ~= 2.6.11'
+        'markdown ~= 2.6.11',
+        'waitress ~= 1.1.0',
     ],  # Optional
 
     # List additional groups of dependencies here (e.g. development

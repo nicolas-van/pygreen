@@ -14,6 +14,7 @@ import re
 import argparse
 import sys
 import markdown
+import waitress
 
 _logger = logging.getLogger(__name__)
 
@@ -89,7 +90,7 @@ class PyGreen:
         """
         Launch a development web server.
         """
-        self.app.run(host=host, port=port, debug=True, use_reloader=False, use_evalex=False)
+        waitress.serve(self.app, host=host, port=port)
 
     def get(self, path):
         """
