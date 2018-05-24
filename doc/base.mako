@@ -19,7 +19,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 py-5">
         ${self.body()}
       </div>
     </div>
