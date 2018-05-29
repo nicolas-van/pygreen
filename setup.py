@@ -39,7 +39,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='2.1.0',  # Required
+    version='2.1.1',  # Required
 
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
@@ -201,5 +201,5 @@ setup(
         'Source': 'https://github.com/nicolas-van/pygreen',
     },
 
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, >=3.3',
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*',
 )
