@@ -41,7 +41,7 @@ class PyGreen:
         # the TemplateLookup of Mako
         self.templates = TemplateLookup(directories=[self.folder],
             imports=["from markdown import markdown"],
-            input_encoding='iso-8859-1',
+            input_encoding='utf-8',
             collection_size=100,
             strict_undefined=True,
             )
