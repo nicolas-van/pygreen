@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Pygreen</title>
+  <meta name="description" content="Pygreen - Static Web Site Generator for Python Programmers">
+  <meta name="author" content="Nicolas Vanhoren">
+
+  <link rel="stylesheet" type="text/css" href="./index.css" />
+
+</head>
+<body>
+
+  <a href="https://github.com/nicolas-van/pygreen"><img style="position: absolute; top: 0; right: 0; border: 0;"
+    src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 py-5">
+        
+
+
+
+<h1>PyGreen</h1>
+<p>A micro web framework/static web site generator.</p>
+<p>PyGreen is a simple tool to generate small web sites. The concept is to put all files to serve in a folder and invoke
+the <a href="http://www.makotemplates.org/">Mako</a> template engine on all .html files. The result is quite similar to a classic
+PHP application, but with the good features of the Mako templates (like inheritance) and the cool syntax of Python.</p>
+<p>PyGreen uses the MIT license.</p>
+<h2>Quick Start</h2>
+<p>To install:</p>
+<pre><code>sudo easy_install pygreen
+</code></pre>
+<p>To launch and serve files:</p>
+<pre><code>pygreen serve
+</code></pre>
+<p>The above command will serve the files located in the current folder. All files with the .html extension will also be
+processed by Mako. So if the current folder contains a file index.html with the following code:</p>
+<pre><code>&lt;p&gt;Hello, my age is ${30 - 2}.&lt;/p&gt;
+</code></pre>
+<p>When going to http://localhost:8080, you will see:</p>
+<pre><code>&lt;p&gt;Hello, my age is 28.&lt;/p&gt;
+</code></pre>
+<p>PyGreen can also export all the files of you current folder after having the .html files processed by Mako. To do so,
+type this command:</p>
+<pre><code>pygreen gen &lt;output_folder&gt;
+</code></pre>
+<p>This can be useful to post your files on Github Pages or any other free static files hosting services.</p>
+<h2>Features</h2>
+<p>PyGreen was designed to <em>not</em> have a lot of features. Mako templates can contain Python code, so you can always code
+anything you need. The following features are still useful in most projects and are directly integrated in PyGreen.</p>
+<h3>Non-generated files</h3>
+<p>All files with the .mako or .py extension will not be outputed by pygreen gen. This is useful to avoid generating macros
+files or templates to inherit. Hidden files (files beginning with '.') will not be generated either.</p>
+<h3>Markdown</h3>
+<p>While it is easy to define your own macro for markdown, it's still a recurrent need for most sites. So there is a
+default Mako filter for that:</p>
+<pre><code>&lt;%block filter="markdown"&gt;
+Look at my title
+================
+&lt;/%block&gt;
+</code></pre>
+<h2>FAQ</h2>
+<h3>I miss feature XYZ, can you add it?</h3>
+<p>No. But you can. Easily. PyGreen can be a command line application or it can be a small framework to ease creation of
+complete Python web applications. PyGreen is just <a href="http://www.makotemplates.org/">Mako</a> templates served using the
+<a href="http://flask.pocoo.org/">Flask</a> web framework (<a href="http://bottlepy.org/">Bottle</a> in version 1.x). You can easily modify
+any of these using some python code. Example:</p>
+<pre><code>from pygreen import pygreen
+
+pygreen.app # the Flask wsgi application, use the @route() decorator to add new routes
+pygreen.templates # the Mako TemplateLookup object, do what you want with it
+
+pygreen.cli() # call the command line interface of PyGreen, you can use it or
+# just launch a web server using the Flask application object
+</code></pre>
+<p>It's important to understand that PyGreen is just a helper that allows to make simple things simple (like defining 3
+html files that inherit from a common template without the need to type code) but doesn't restrict you. You need
+anything complex? Mako templates can contain Python code so import whatever you need and use the features it provides.
+If you need anything more complex hack through PyGreen and do it. Read the PyGreen code, it's 100 lines with some
+documentation, anyone can understand it. If you read this you should be a Python programmer, so just type the code and
+get the job done.</p>
+<h3>Why is it so cool?</h3>
+<p>PyGreen was primarily created to be a static web site generator more effective than existing ones. The problem of
+existing site generators like Jekyll or Hyde is that they have a fixed number of features. Even if their creators try to
+add advanced features those will not be correctly documented, so the users do not know how to use them.</p>
+<p>The fact that PyGreen has a small set of features <strong>is a feature</strong>. You don't need to spend hours to read crappy
+documentation before discovering it's impossible to do what you want. If you need to do anything which is not trivial
+you know you will have to code it, so just do it. That's what I call being pragmatic.</p>
+<h3>Does PyGreen need contributions?</h3>
+<p>Yes! Report issues, write examples in the wiki, propose improvements,
+<a href="https://github.com/nicolas-van/pygreen">everything is on Github</a>. Just keep in mind that PyGreen is designed to be
+minimalist, so big features will probably not be accepted.</p>
+<p>You can also write articles or blog posts about PyGreen.</p>
+<p>For any question, <a href="https://github.com/nicolas-van">contact me</a>.</p>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
