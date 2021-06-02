@@ -1,0 +1,18 @@
+
+
+// basic customization of style
+$font-family-serif: "Lora", serif;
+$font-family-base: $font-family-serif;
+$headings-font-family: "EB Garamond", serif;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 640px,
+  lg: 690px,
+  xl: 720px
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+@import url(https://fonts.googleapis.com/css?family=Lora:400,700);
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond);
