@@ -37,7 +37,7 @@ class PyGreen:
             collection_size=100,
             )
         # A list of regular expression. Files whose the name match
-        # one of those regular expressions will not be outputed when generating
+        # one of those regular expressions will not be outputted when generating
         # a static version of the web site
         self.file_exclusion = [r".*\.mako", r".*\.py", r"(^|.*\/)\..*"]
         def is_public(path):
@@ -94,7 +94,7 @@ class PyGreen:
 
     def get(self, path):
         """
-        Get the content of a file, indentified by its path relative to the folder configured
+        Get the content of a file, identified by its path relative to the folder configured
         in PyGreen. If the file extension is one of the extensions that should be processed
         through Mako, it will be processed.
         """
