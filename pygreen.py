@@ -5,6 +5,7 @@ from __future__ import division, absolute_import, print_function, unicode_litera
 import flask
 import os.path
 from mako.lookup import TemplateLookup
+from mako import exceptions
 import os
 import os.path
 import wsgiref.handlers
@@ -18,9 +19,16 @@ import waitress
 
 _logger = logging.getLogger(__name__)
 
+sys.path.append(".")
+
 class PyGreen:
 
     def __init__(self):
+        if os.path.isfile("env.py"):
+            import env
+        else:
+            env = None
+        self.env = env
         # the Bottle application
         self.app = flask.Flask(__name__, static_folder=None, template_folder=None)
         # a set of strings that identifies the extension of the files
@@ -33,8 +41,9 @@ class PyGreen:
         # the TemplateLookup of Mako
         self.templates = TemplateLookup(directories=[self.folder],
             imports=["from markdown import markdown"],
-            input_encoding='iso-8859-1',
+            input_encoding='utf-8',
             collection_size=100,
+            strict_undefined=True,
             )
         # A list of regular expression. Files whose the name match
         # one of those regular expressions will not be outputted when generating
@@ -65,9 +74,18 @@ class PyGreen:
 
         def file_renderer(path):
             if is_public(path):
+                if os.path.isdir(path):
+                    tmp = os.path.join(path, "index.html")
+                    if os.path.isfile(tmp):
+                        path = tmp
+                    else:
+                        return b"No index.html in path: %s" % path
                 if path.split(".")[-1] in self.template_exts and self.templates.has_template(path):
                     t = self.templates.get_template(path)
-                    data = t.render_unicode(pygreen=self)
+                    try:
+                        data = t.render_unicode(pygreen=self, env=self.env)
+                    except:
+                        return exceptions.html_error_template().render()
                     return data.encode(t.module._source_encoding)
                 if os.path.exists(os.path.join(self.folder, path)):
                     return flask.send_file(path)
@@ -154,9 +172,8 @@ class PyGreen:
         print("")
         args.func()
 
-pygreen = PyGreen()
-
 def main():
+    pygreen = PyGreen()
     pygreen.cli()
 
 if __name__ == "__main__":
